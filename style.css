@@ -1,0 +1,21 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #0d0a08;
+}
+
+.fullscreen-canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+}

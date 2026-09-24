@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAWON | Coconut Milk Latte</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23d4a359'/><circle cx='50' cy='50' r='20' fill='%23231c18'/></svg>">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#C87928",
+            "primary-dark": "#9A5515",
+            "background-light": "#FAF7F2",
+            "background-dark": "#16110D",
+            "surface-light": "#FFFFFF",
+            "surface-dark": "#231B15",
+            "border-light": "#E8DFD5",
+            "border-dark": "#362920",
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          borderRadius: {
+            DEFAULT: "1rem",
+          }
+        },
+      },
+    };
+  </script>
+
+  <!-- Animation canvas styles -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="bg-background-dark text-stone-100 font-sans antialiased transition-colors duration-300 selection:bg-amber-500 selection:text-white">
+
+  <!-- ─── NAVIGATION BAR ─── -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 lg:px-12 py-5 transition-all duration-300 bg-transparent text-white">
+    <a href="#" class="flex items-center gap-2 group">
+      <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold font-display group-hover:scale-105 transition-transform">N</div>
+      <span class="font-display font-bold text-xl tracking-wide drop-shadow-md">nawon</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium drop-shadow-md">
+      <a href="#flavor" class="hover:text-primary transition-colors">Flavor</a>
+      <a href="#ingredients" class="hover:text-primary transition-colors">Ingredients</a>
+      <a href="#nutrition" class="hover:text-primary transition-colors">Nutrition</a>
+      <a href="#locations" class="hover:text-primary transition-colors">Find Us</a>
+      <a href="#faq" class="hover:text-primary transition-colors">FAQ</a>
+    </div>
+    <div>
+      <a href="#shop" class="px-5 py-2.5 rounded-full bg-primary hover:bg-amber-600 text-white text-sm font-bold shadow-lg transition-all hover:shadow-primary/50">Shop Now</a>
+    </div>
+  </nav>
+
+  <!-- ─── SCROLL ANIMATION CANVAS ─── -->
+  <div class="relative w-full h-screen">
+    <canvas id="sequence-canvas" class="fullscreen-canvas"></canvas>
+    
+    <!-- Hero Text Overlay -->
+    <div id="hero-text" class="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none text-center transition-opacity will-change-transform">
+      <h1 class="font-display text-7xl sm:text-8xl md:text-9xl font-bold text-white drop-shadow-lg mb-4">Nawon</h1>
+      <p class="font-sans text-sm sm:text-base md:text-lg uppercase tracking-[0.3em] font-semibold text-white/90 drop-shadow-md">Your health - Our mission</p>
+    </div>
+  </div>
+
+
+
+  <!-- ─── CONTENT SECTIONS FROM code.html (no navbar / no hero) ─── -->
+  <!-- Solid wrapper ensures the fixed canvas is fully covered by opaque content -->
+  <div style="position: relative; background-color: #FAF7F2;">
+
+  <!-- Features strip -->
+  <section class="border-y border-stone-200 py-8" style="background-color: #ffffff;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 shrink-0 rounded-2xl bg-amber-100 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800/60 text-amber-700 dark:text-amber-400 flex items-center justify-center">
+            <span class="material-icons-round text-2xl">verified</span>
+          </div>
+          <div>
+            <h4 class="text-sm sm:text-base font-bold text-stone-900 dark:text-stone-100">100% Dairy-Free</h4>
+            <p class="text-xs text-stone-500 dark:text-stone-400">Vegan &amp; lactose free</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 shrink-0 rounded-2xl bg-amber-100 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800/60 text-amber-700 dark:text-amber-400 flex items-center justify-center">
+            <span class="material-icons-round text-2xl">coffee_maker</span>
+          </div>
+          <div>
+            <h4 class="text-sm sm:text-base font-bold text-stone-900 dark:text-stone-100">Slow-Roasted Beans</h4>
+            <p class="text-xs text-stone-500 dark:text-stone-400">Arabica &amp; Robusta blend</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 shrink-0 rounded-2xl bg-amber-100 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800/60 text-amber-700 dark:text-amber-400 flex items-center justify-center">
+            <span class="material-icons-round text-2xl">energy_savings_leaf</span>
+          </div>
+          <div>
+            <h4 class="text-sm sm:text-base font-bold text-stone-900 dark:text-stone-100">Natural MCT Energy</h4>
+            <p class="text-xs text-stone-500 dark:text-stone-400">Cold-pressed coconut cream</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 shrink-0 rounded-2xl bg-amber-100 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800/60 text-amber-700 dark:text-amber-400 flex items-center justify-center">
+            <span class="material-icons-round text-2xl">health_and_safety</span>
+          </div>
+          <div>
+            <h4 class="text-sm sm:text-base font-bold text-stone-900 dark:text-stone-100">Zero Artificials</h4>
+            <p class="text-xs text-stone-500 dark:text-stone-400">No chemical preservatives</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flavor section -->
+  <section class="py-20 md:py-28" id="flavor" style="background-color: #f1ede8;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-primary">Master Craftsmanship</span>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white">
+          The Perfect Symphony of Creamy &amp; Roasted
+        </h2>
+        <p class="text-stone-600 dark:text-stone-400 text-base sm:text-lg">
+          We balanced the naturally sweet, velvety richness of tropical coconut milk with deep, dark espresso extract to provide an irresistible multi-layered tasting journey.
+        </p>
+      </div>
+      <div class="grid lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-6 space-y-4">
+          <div class="p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/40 text-primary flex items-center justify-center font-bold text-sm">01</div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="text-base font-bold text-stone-900 dark:text-white">Top Note: Aromatic Roasted Espresso</h4>
+                  <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300">Initial Hit</span>
+                </div>
+                <p class="text-sm text-stone-600 dark:text-stone-300 mt-1">
+                  Dark cocoa and roasted nutty fragrance that hits your senses the second the bottle is opened.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/40 text-primary flex items-center justify-center font-bold text-sm">02</div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="text-base font-bold text-stone-900 dark:text-white">Heart Note: Rich Velvety Coconut Cream</h4>
+                  <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300">Body</span>
+                </div>
+                <p class="text-sm text-stone-600 dark:text-stone-300 mt-1">
+                  Buttery, smooth mouthfeel with delicate vanilla and freshly grated coconut meat undertones.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/40 text-primary flex items-center justify-center font-bold text-sm">03</div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="text-base font-bold text-stone-900 dark:text-white">Base Note: Silky Caramel Latte Finish</h4>
+                  <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300">Lingering</span>
+                </div>
+                <p class="text-sm text-stone-600 dark:text-stone-300 mt-1">
+                  Clean, subtle sweetness with zero dairy aftertaste or chalky artificial sweetener sensations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-6 bg-white dark:bg-stone-800/90 border border-stone-200 dark:border-stone-700 rounded-3xl p-8 sm:p-10 shadow-lg space-y-8">
+          <h3 class="font-display text-2xl font-bold text-stone-900 dark:text-white flex items-center gap-2">
+            <span class="material-icons-round text-primary">equalizer</span>
+            Tasting Scale Breakdown
+          </h3>
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                <span class="text-stone-800 dark:text-stone-200">Sweetness Level</span>
+                <span class="text-primary font-bold">Balanced (6 / 10)</span>
+              </div>
+              <div class="w-full h-3.5 bg-stone-100 dark:bg-stone-700 rounded-full overflow-hidden p-0.5">
+                <div class="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full w-[60%]"></div>
+              </div>
+              <p class="text-xs text-stone-500 mt-1.5">Gentle organic cane sugar, perfectly calibrated to avoid heaviness.</p>
+            </div>
+            <div>
+              <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                <span class="text-stone-800 dark:text-stone-200">Creaminess</span>
+                <span class="text-primary font-bold">Silky &amp; Dense (9 / 10)</span>
+              </div>
+              <div class="w-full h-3.5 bg-stone-100 dark:bg-stone-700 rounded-full overflow-hidden p-0.5">
+                <div class="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full w-[90%]"></div>
+              </div>
+              <p class="text-xs text-stone-500 mt-1.5">Full-bodied mouthfeel from fresh-pressed cold coconut cream.</p>
+            </div>
+            <div>
+              <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                <span class="text-stone-800 dark:text-stone-200">Coffee Intensity</span>
+                <span class="text-primary font-bold">Bold Roast (7 / 10)</span>
+              </div>
+              <div class="w-full h-3.5 bg-stone-100 dark:bg-stone-700 rounded-full overflow-hidden p-0.5">
+                <div class="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full w-[70%]"></div>
+              </div>
+              <p class="text-xs text-stone-500 mt-1.5">95mg natural caffeine for steady, non-jittery alertness.</p>
+            </div>
+          </div>
+          <div class="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/40 flex items-center gap-3">
+            <span class="material-icons-round text-amber-600 dark:text-amber-400">ac_unit</span>
+            <p class="text-xs text-amber-900 dark:text-amber-200 font-medium leading-relaxed">
+              <strong>Best Served Chilled:</strong> Shake well before sipping, or pour over large ice cubes for an authentic coffeehouse iced latte experience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ingredients section -->
+  <section class="py-20 md:py-28 border-b border-stone-200" id="ingredients" style="background-color: #FAF7F2;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-primary">Uncompromising Quality</span>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white">
+          Simple, Pure Ingredients You Can Pronounce
+        </h2>
+        <p class="text-stone-600 dark:text-stone-400 text-base">
+          No fillers, gums, or artificial syrups. Just authentic tropical harvests blended with precision roasting.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-stone-800/80 p-8 rounded-3xl border border-stone-200 dark:border-stone-700/80 hover:border-amber-500 dark:hover:border-amber-500 transition-colors shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-primary flex items-center justify-center mb-5">
+            <span class="material-icons-round text-2xl">nature</span>
+          </div>
+          <h3 class="text-lg font-bold text-stone-900 dark:text-white mb-2">Fresh Vietnamese Coconut Milk</h3>
+          <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+            Sourced directly from fertile Mekong Delta groves within 24 hours of harvest to preserve delicate medium-chain fats and velvety sweetness.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-stone-800/80 p-8 rounded-3xl border border-stone-200 dark:border-stone-700/80 hover:border-amber-500 dark:hover:border-amber-500 transition-colors shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-primary flex items-center justify-center mb-5">
+            <span class="material-icons-round text-2xl">local_cafe</span>
+          </div>
+          <h3 class="text-lg font-bold text-stone-900 dark:text-white mb-2">Highland Arabica Coffee Extract</h3>
+          <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+            Slow-dripped and roasted to a deep medium-dark profile to complement coconut lipids without high acidity or bitterness.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-stone-800/80 p-8 rounded-3xl border border-stone-200 dark:border-stone-700/80 hover:border-amber-500 dark:hover:border-amber-500 transition-colors shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-primary flex items-center justify-center mb-5">
+            <span class="material-icons-round text-2xl">grain</span>
+          </div>
+          <h3 class="text-lg font-bold text-stone-900 dark:text-white mb-2">Organic Cane Sugar</h3>
+          <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+            Unrefined, non-GMO pure cane crystals that highlight the natural nutty undertones rather than masking them with high fructose syrups.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-stone-800/80 p-8 rounded-3xl border border-stone-200 dark:border-stone-700/80 hover:border-amber-500 dark:hover:border-amber-500 transition-colors shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-primary flex items-center justify-center mb-5">
+            <span class="material-icons-round text-2xl">cookie</span>
+          </div>
+          <h3 class="text-lg font-bold text-stone-900 dark:text-white mb-2">Natural Caramel Flavour</h3>
+          <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+            Derived entirely from botanical sources to add warmth, buttery depth, and traditional coffeehouse indulgence.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-stone-800/80 p-8 rounded-3xl border border-stone-200 dark:border-stone-700/80 hover:border-amber-500 dark:hover:border-amber-500 transition-colors shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-primary flex items-center justify-center mb-5">
+            <span class="material-icons-round text-2xl">waves</span>
+          </div>
+          <h3 class="text-lg font-bold text-stone-900 dark:text-white mb-2">Pinch of Pure Sea Salt</h3>
+          <p class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+            Hand-harvested sea minerals that naturally bind the cocoa and coconut oils while rounding off sweet and bitter notes.
+          </p>
+        </div>
+        <div class="bg-gradient-to-br from-[#382013] to-[#20130B] p-8 rounded-3xl text-white flex flex-col justify-between shadow-lg relative overflow-hidden">
+          <div class="absolute -bottom-6 -right-6 w-36 h-36 bg-amber-500/10 rounded-full blur-xl"></div>
+          <div>
+            <div class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase mb-4 tracking-wider">
+              Quality Guarantee
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-2">"Your health - Our mission"</h3>
+            <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+              Every glass bottle is hot-filled and sealed under sterile conditions to preserve fresh flavor without chemical additives.
+            </p>
+          </div>
+          <div class="pt-6 flex items-center gap-3 border-t border-stone-700/60 mt-6">
+            <span class="material-icons-round text-amber-400">military_tech</span>
+            <span class="text-xs font-semibold tracking-wide text-amber-200 uppercase">ISO 22000 &amp; HACCP Certified</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nutrition section -->
+  <section class="py-20 md:py-28" id="nutrition" style="background-color: #ece8e2;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-primary">Nutritional Transparency</span>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white">
+          Fuel Your Day with Smart Nutrition
+        </h2>
+        <p class="text-stone-600 dark:text-stone-400 text-base sm:text-lg">
+          Per 280 mL (9.4 fl oz) serving. Clean sustained energy without the heavy crash or digestion distress.
+        </p>
+      </div>
+      <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+        <div class="lg:col-span-5 bg-white dark:bg-stone-800 rounded-3xl p-8 border border-stone-200 dark:border-stone-700 shadow-md flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between border-b border-stone-200 dark:border-stone-700 pb-4 mb-6">
+              <div>
+                <h3 class="text-2xl font-bold text-stone-900 dark:text-white">Nutrition Facts</h3>
+                <p class="text-xs text-stone-500">Serving Size: 1 Bottle (280 mL)</p>
+              </div>
+              <div class="text-right">
+                <span class="text-3xl font-extrabold text-primary font-display">130</span>
+                <p class="text-[10px] uppercase font-bold text-stone-500">Calories</p>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center py-2 border-b border-stone-100 dark:border-stone-700/50 text-sm">
+                <span class="font-semibold text-stone-800 dark:text-stone-200">Total Fat</span>
+                <span class="font-bold text-stone-900 dark:text-white">4.5g <span class="text-xs text-stone-500 font-normal">(6% DV)</span></span>
+              </div>
+              <div class="flex justify-between items-center py-2 pl-4 border-b border-stone-100 dark:border-stone-700/50 text-sm text-stone-600 dark:text-stone-400">
+                <span>Healthy Plant MCTs</span>
+                <span class="font-semibold text-amber-600 dark:text-amber-400">3.0g</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-stone-100 dark:border-stone-700/50 text-sm">
+                <span class="font-semibold text-stone-800 dark:text-stone-200">Total Carbohydrates</span>
+                <span class="font-bold text-stone-900 dark:text-white">18g</span>
+              </div>
+              <div class="flex justify-between items-center py-2 pl-4 border-b border-stone-100 dark:border-stone-700/50 text-sm text-stone-600 dark:text-stone-400">
+                <span>Dietary Fiber</span>
+                <span class="font-semibold">1.5g</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-stone-100 dark:border-stone-700/50 text-sm">
+                <span class="font-semibold text-stone-800 dark:text-stone-200">Protein</span>
+                <span class="font-bold text-stone-900 dark:text-white">2.0g</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-stone-100 dark:border-stone-700/50 text-sm">
+                <span class="font-semibold text-stone-800 dark:text-stone-200">Natural Caffeine</span>
+                <span class="font-bold text-amber-600 dark:text-amber-400">95mg</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 pt-4 border-t border-stone-200 dark:border-stone-700 flex items-center gap-3">
+            <span class="material-icons-round text-primary text-xl">speed</span>
+            <p class="text-xs text-stone-500 dark:text-stone-400">95mg caffeine corresponds to a freshly extracted single espresso shot.</p>
+          </div>
+        </div>
+        <div class="lg:col-span-7 bg-white dark:bg-stone-800 rounded-3xl p-8 border border-stone-200 dark:border-stone-700 shadow-md flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-stone-900 dark:text-white mb-2">How Nawon Compares</h3>
+            <p class="text-sm text-stone-500 mb-6">See why switching from regular store-bought dairy bottled iced lattes changes everything.</p>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-sm">
+                <thead>
+                  <tr class="border-b border-stone-200 dark:border-stone-700 text-xs uppercase tracking-wider text-stone-400">
+                    <th class="pb-3 font-semibold">Features</th>
+                    <th class="pb-3 font-extrabold text-amber-600 dark:text-amber-400">Nawon Coconut Latte</th>
+                    <th class="pb-3 font-semibold text-stone-500">Standard Dairy Iced Latte</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-stone-100 dark:divide-stone-700/60">
+                  <tr>
+                    <td class="py-3.5 font-medium text-stone-800 dark:text-stone-200">Dairy &amp; Lactose</td>
+                    <td class="py-3.5 font-bold text-green-600 dark:text-green-400 flex items-center gap-1.5">
+                      <span class="material-icons-round text-sm">check_circle</span> 100% Dairy-Free
+                    </td>
+                    <td class="py-3.5 text-stone-500">Contains Cow's Milk</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3.5 font-medium text-stone-800 dark:text-stone-200">Gut Digestibility</td>
+                    <td class="py-3.5 font-bold text-green-600 dark:text-green-400 flex items-center gap-1.5">
+                      <span class="material-icons-round text-sm">check_circle</span> Gentle on stomach
+                    </td>
+                    <td class="py-3.5 text-stone-500">Often causes bloating</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3.5 font-medium text-stone-800 dark:text-stone-200">Fat Quality</td>
+                    <td class="py-3.5 font-bold text-stone-900 dark:text-white">Medium Chain MCTs</td>
+                    <td class="py-3.5 text-stone-500">Animal Saturated Fats</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3.5 font-medium text-stone-800 dark:text-stone-200">Artificial Stabilizers</td>
+                    <td class="py-3.5 font-bold text-green-600 dark:text-green-400 flex items-center gap-1.5">
+                      <span class="material-icons-round text-sm">check_circle</span> None
+                    </td>
+                    <td class="py-3.5 text-stone-500">Carrageenan / Emulsifiers</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3.5 font-medium text-stone-800 dark:text-stone-200">Packaging</td>
+                    <td class="py-3.5 font-bold text-stone-900 dark:text-white">Recyclable Glass Bottle</td>
+                    <td class="py-3.5 text-stone-500">Single-use Plastic</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="mt-8 p-4 rounded-2xl bg-stone-50 dark:bg-stone-900/80 border border-stone-200 dark:border-stone-700/80 text-xs text-stone-600 dark:text-stone-300 flex items-center justify-between">
+            <span>Ready to experience clean plant-powered energy?</span>
+            <a class="font-bold text-primary hover:underline flex items-center gap-1" href="#shop">
+              Select Pack <span class="material-icons-round text-xs">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop section -->
+  <section class="py-20 md:py-28" id="shop" style="background-color: #FAF7F2;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-primary">Direct from Maker</span>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white">
+          Stock Up on Fresh Chilled Latte
+        </h2>
+        <p class="text-stone-600 dark:text-stone-400 text-base">
+          Delivered chilled to your doorstep in insulated, recyclable packaging.
+        </p>
+        <div class="inline-flex p-1.5 rounded-full bg-stone-200/70 dark:bg-stone-800 border border-stone-300/60 dark:border-stone-700 mt-4">
+          <button class="px-5 py-2 rounded-full text-xs font-bold transition-all bg-white dark:bg-stone-900 text-stone-900 dark:text-white shadow">
+            One-Time Order
+          </button>
+          <button class="px-5 py-2 rounded-full text-xs font-bold transition-all text-stone-600 dark:text-stone-400 hover:text-stone-900 flex items-center gap-1">
+            <span>Subscribe &amp; Save (15% Off)</span>
+            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          </button>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 items-stretch">
+        <div class="bg-white dark:bg-stone-800/90 rounded-3xl p-8 border border-stone-200 dark:border-stone-700/80 flex flex-col justify-between shadow-sm hover:shadow-lg transition-all">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">Starter Box</div>
+            <h3 class="text-2xl font-bold text-stone-900 dark:text-white">6-Pack</h3>
+            <p class="text-xs text-stone-500 mt-1">6 x 280 mL Glass Bottles</p>
+            <div class="mt-6 flex items-baseline gap-2">
+              <span class="text-4xl font-extrabold text-stone-900 dark:text-white font-display">$19.99</span>
+              <span class="text-xs text-stone-500">($3.33 / bottle)</span>
+            </div>
+            <ul class="mt-6 space-y-3 text-xs text-stone-600 dark:text-stone-300">
+              <li class="flex items-center gap-2"><span class="material-icons-round text-green-600 text-sm">done</span><span>Perfect trial for first-time tasters</span></li>
+              <li class="flex items-center gap-2"><span class="material-icons-round text-green-600 text-sm">done</span><span>Standard insulated shipping</span></li>
+              <li class="flex items-center gap-2"><span class="material-icons-round text-green-600 text-sm">done</span><span>Includes reusable bottle opener</span></li>
+            </ul>
+          </div>
+          <button class="mt-8 w-full py-3.5 rounded-full border-2 border-stone-900 dark:border-white font-bold text-sm text-stone-900 dark:text-white hover:bg-stone-900 hover:text-white dark:hover:bg-white dark:hover:text-stone-900 transition-all">
+            Add 6-Pack to Cart
+          </button>
+        </div>
+        <div class="bg-gradient-to-b from-amber-500/10 via-white to-white dark:from-amber-950/30 dark:via-stone-800 dark:to-stone-800 rounded-3xl p-8 border-2 border-primary relative flex flex-col justify-between shadow-xl">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-white text-[11px] font-extrabold uppercase tracking-widest px-4 py-1 rounded-full shadow-md">
+            Most Popular · Save 15%
+          </div>
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-primary mb-2">Best Value</div>
+            <h3 class="text-2xl font-bold text-stone-900 dark:text-white">12-Pack</h3>
+            <p class="text-xs text-stone-500 mt-1">12 x 280 mL Glass Bottles</p>
+            <div class="mt-6 flex items-baseline gap-2">
+              <span class="text-4xl font-extrabold text-stone-900 dark:text-white font-display">$34.99</span>
+              <span class="text-xs line-through text-stone-400">$39.99</span>
+              <span class="text-xs text-stone-500">($2.91 / bottle)</span>
+            </div>
+            <ul class="mt-6 space-y-3 text-xs text-stone-700 dark:text-stone-200 font-medium">
+              <li class="flex items-center gap-2"><span class="material-icons-round text-primary text-sm">done</span><span><strong>Free 2-Day Express Shipping</strong></span></li>
+              <li class="flex items-center gap-2"><span class="material-icons-round text-primary text-sm">done</span><span>Ideal for two-week daily routines</span></li>
+              <li class="flex items-center gap-2"><span class="material-icons-round text-primary text-sm">done</span><span>Free recipe booklet for iced mocktails</span></li>
+            </ul>
+          </div>
+          <button class="mt-8 w-full py-4 rounded-full bg-primary hover:bg-amber-600 text-white font-bold text-sm shadow-lg shadow-amber-700/30 transition-all hover:-translate-y-0.5">
+            Add 12-Pack to Cart
+          </button>
+        </div>
+        <div class="bg-white dark:bg-stone-800/90 rounded-3xl p-8 border border-stone-200 dark:border-stone-700/80 flex flex-col justify-between shadow-sm hover:shadow-lg transition-all">
+          <div>
+            <div class="flex items-center justify-between">
+              <div class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-2">Fridge Stash</div>
+              <span class="text-[10px] font-bold uppercase bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded">Save 25%</span>
+            </div>
+            <h3 class="text-2xl font-bold text-stone-900 dark:text-white">24-Pack Case</h3>
+            <p class="text-xs text-stone-500 mt-1">24 x 280 mL Glass Bottles</p>
+            <div class="mt-6 flex items-baseline gap-2">
+              <span class="text-4xl font-extrabold text-stone-900 dark:text-white font-display">$62.99</span>
+              <span class="text-xs line-through text-stone-400">$79.99</span>
+              <span class="text-xs text-stone-500">($2.62 / bottle)</span>
+            </div>
+            <ul class="mt-6 space-y-3 text-xs text-stone-600 dark:text-stone-300">
+              <li class="flex items-center gap-2"><span class="material-icons-round text-green-600 text-sm">done</span><span>Free Priority Cold-Chain Delivery</span></li>
+              <li class="flex items-center gap-2"><span class="material-icons-round text-green-600 text-sm">done</span><span>Lowest price per bottle</span></li>
+              <li class="flex items-center gap-2"><span class="material-icons-round text-green-600 text-sm">done</span><span>Monthly auto-refill option</span></li>
+            </ul>
+          </div>
+          <button class="mt-8 w-full py-3.5 rounded-full border-2 border-stone-900 dark:border-white font-bold text-sm text-stone-900 dark:text-white hover:bg-stone-900 hover:text-white dark:hover:bg-white dark:hover:text-stone-900 transition-all">
+            Add 24-Pack to Cart
+          </button>
+        </div>
+      </div>
+      <div class="mt-12 text-center text-xs text-stone-500 flex flex-wrap items-center justify-center gap-8">
+        <span class="flex items-center gap-1.5"><span class="material-icons-round text-primary text-sm">lock</span> 256-Bit Encrypted Secure Checkout</span>
+        <span class="flex items-center gap-1.5"><span class="material-icons-round text-primary text-sm">replay</span> 30-Day Taste Satisfaction Guarantee</span>
+        <span class="flex items-center gap-1.5"><span class="material-icons-round text-primary text-sm">cancel</span> Pause or Cancel Subscriptions Anytime</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews section -->
+  <section class="py-20 md:py-28 border-t border-stone-200" style="background-color: #f1ede8;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-widest text-primary">Community Verified</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-stone-900 dark:text-white mt-2">
+            Loved by Over 12,000 Morning Rituals
+          </h2>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="flex text-amber-500">
+            <span class="material-icons-round">star</span>
+            <span class="material-icons-round">star</span>
+            <span class="material-icons-round">star</span>
+            <span class="material-icons-round">star</span>
+            <span class="material-icons-round">star</span>
+          </div>
+          <span class="text-sm font-bold text-stone-800 dark:text-stone-200">4.9 Overall Rating</span>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-stone-800 p-7 rounded-3xl border border-stone-200/80 dark:border-stone-700/80 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex text-amber-500 mb-4">
+              <span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span>
+            </div>
+            <p class="text-stone-700 dark:text-stone-300 text-sm leading-relaxed italic mb-6">
+              "As a barista who gave up dairy last year, most canned or bottled iced lattes taste watery and artificial. Nawon's texture is genuinely creamy like micro-foamed milk, and the coffee flavour punches through beautifully."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 border-t border-stone-100 dark:border-stone-700/60 pt-4">
+            <div class="w-9 h-9 rounded-full bg-amber-600/20 text-primary font-bold flex items-center justify-center text-xs">EL</div>
+            <div>
+              <h4 class="text-xs font-bold text-stone-900 dark:text-white">Elena Lin</h4>
+              <p class="text-[11px] text-stone-500">Specialty Coffee Barista · Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-stone-800 p-7 rounded-3xl border border-stone-200/80 dark:border-stone-700/80 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex text-amber-500 mb-4">
+              <span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span>
+            </div>
+            <p class="text-stone-700 dark:text-stone-300 text-sm leading-relaxed italic mb-6">
+              "The 95mg caffeine is my exact sweet spot for a pre-workout or 2 PM slump. Zero stomach cramps because it's coconut milk, and only 130 calories makes it an easy daily grab from my fridge."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 border-t border-stone-100 dark:border-stone-700/60 pt-4">
+            <div class="w-9 h-9 rounded-full bg-amber-600/20 text-primary font-bold flex items-center justify-center text-xs">MT</div>
+            <div>
+              <h4 class="text-xs font-bold text-stone-900 dark:text-white">Marcus Thorne</h4>
+              <p class="text-[11px] text-stone-500">CrossFit Coach · Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-stone-800 p-7 rounded-3xl border border-stone-200/80 dark:border-stone-700/80 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex text-amber-500 mb-4">
+              <span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span><span class="material-icons-round text-sm">star</span>
+            </div>
+            <p class="text-stone-700 dark:text-stone-300 text-sm leading-relaxed italic mb-6">
+              "The glass bottle keeps it super cold, and the taste is reminiscent of Vietnamese iced coffee with that silky, luscious coconut twist. We ordered the 24-pack case and we're already on our third refill!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 border-t border-stone-100 dark:border-stone-700/60 pt-4">
+            <div class="w-9 h-9 rounded-full bg-amber-600/20 text-primary font-bold flex items-center justify-center text-xs">SK</div>
+            <div>
+              <h4 class="text-xs font-bold text-stone-900 dark:text-white">Sarah &amp; Kevin</h4>
+              <p class="text-[11px] text-stone-500">Monthly Subscribers · Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations + FAQ section -->
+  <section class="py-20 md:py-28 bg-background-light dark:bg-background-dark" id="locations">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-amber-900 via-stone-900 to-stone-950 text-white rounded-3xl p-8 sm:p-12 shadow-xl mb-20 relative overflow-hidden">
+        <div class="max-w-2xl relative z-10 space-y-4">
+          <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Retail Distribution</span>
+          <h3 class="font-display text-3xl sm:text-4xl font-bold">Find Nawon in Over 3,000+ Stores Nationwide</h3>
+          <p class="text-sm sm:text-base text-stone-300">
+            Available in the refrigerated beverage aisles of Whole Foods Market, Sprouts Farmers Market, Wegmans, Natural Grocers, and top independent specialty grocers.
+          </p>
+          <div class="pt-2 flex flex-col sm:flex-row gap-3">
+            <div class="relative flex-1">
+              <span class="material-icons-round absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 text-base">place</span>
+              <input class="w-full pl-11 pr-4 py-3.5 rounded-full bg-white/10 border border-white/20 text-white placeholder-stone-400 text-sm focus:outline-none focus:border-amber-400" placeholder="Enter ZIP code or City..." type="text"/>
+            </div>
+            <button class="px-8 py-3.5 rounded-full bg-primary hover:bg-amber-600 text-white font-bold text-sm transition-all whitespace-nowrap">
+              Search Nearby
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="max-w-4xl mx-auto space-y-8" id="faq">
+        <div class="text-center space-y-2">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-primary">Got Questions?</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-stone-900 dark:text-white">Frequently Asked Questions</h2>
+        </div>
+        <div class="space-y-4">
+          <div class="p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700">
+            <h4 class="text-base font-bold text-stone-900 dark:text-white mb-2 flex items-center gap-2">
+              <span class="material-icons-round text-primary text-base">help_outline</span>
+              Does Nawon Coconut Milk Latte need to be refrigerated?
+            </h4>
+            <p class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed pl-6">
+              Our unopened glass bottles are shelf-stable for up to 18 months from manufacturing thanks to gentle flash pasteurization and vacuum airtight sealing. However, for peak flavor and refreshing taste, we strongly recommend chilling thoroughly before serving and keeping refrigerated once opened. Consume within 48 hours of opening.
+            </p>
+          </div>
+          <div class="p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700">
+            <h4 class="text-base font-bold text-stone-900 dark:text-white mb-2 flex items-center gap-2">
+              <span class="material-icons-round text-primary text-base">help_outline</span>
+              How much caffeine is in each 280 mL bottle?
+            </h4>
+            <p class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed pl-6">
+              Each 280 mL (9.4 fl oz) bottle provides approximately 95 mg of all-natural caffeine derived strictly from our roasted Arabica and Robusta coffee extraction. That matches the caffeine intensity of a standard single barista-pulled espresso shot.
+            </p>
+          </div>
+          <div class="p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700">
+            <h4 class="text-base font-bold text-stone-900 dark:text-white mb-2 flex items-center gap-2">
+              <span class="material-icons-round text-primary text-base">help_outline</span>
+              Is this product safe for people with tree nut allergies?
+            </h4>
+            <p class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed pl-6">
+              This product contains Coconut. While botanical coconuts are fruits (drupes) and not true tree nuts, the FDA categorizes coconut as a tree nut. It is manufactured in a dedicated peanut-free, dairy-free facility.
+            </p>
+          </div>
+          <div class="p-6 rounded-2xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700">
+            <h4 class="text-base font-bold text-stone-900 dark:text-white mb-2 flex items-center gap-2">
+              <span class="material-icons-round text-primary text-base">help_outline</span>
+              Why does natural separation sometimes occur?
+            </h4>
+            <p class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed pl-6">
+              Because we don't formulate with artificial emulsifiers or harsh thickening gums, the natural coconut cream lipids may lightly rise to the neck of the glass bottle. Simply give the bottle a friendly shake before opening for immediate silkiness.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-stone-200 dark:border-stone-800 bg-stone-100 dark:bg-stone-950 py-14 text-stone-600 dark:text-stone-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-stone-200 dark:border-stone-800">
+        <div class="space-y-3">
+          <div class="flex items-center gap-2">
+            <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold font-display">N</div>
+            <span class="font-display font-bold text-xl text-stone-900 dark:text-white">nawon</span>
+          </div>
+          <p class="text-xs text-stone-500 leading-relaxed">
+            Crafting pure plant-based indulgences from tropical coconuts and heritage coffee beans. "Your health - Our mission."
+          </p>
+          <p class="text-[11px] text-stone-500">© 2025 Nawon Beverage Co. All rights reserved.</p>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-stone-900 dark:text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a class="hover:text-amber-600" href="#flavor">Flavor Profile</a></li>
+            <li><a class="hover:text-amber-600" href="#ingredients">Ingredient Sourcing</a></li>
+            <li><a class="hover:text-amber-600" href="#nutrition">Nutrition Facts</a></li>
+            <li><a class="hover:text-amber-600" href="#shop">Shop Latte Packs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-stone-900 dark:text-white mb-4">Company</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a class="hover:text-amber-600" href="#">Our Story</a></li>
+            <li><a class="hover:text-amber-600" href="#">Sustainable Farming</a></li>
+            <li><a class="hover:text-amber-600" href="#">Wholesale &amp; Foodservice</a></li>
+            <li><a class="hover:text-amber-600" href="#">Press &amp; Media</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-stone-900 dark:text-white mb-3">Stay Refreshed</h4>
+          <p class="text-xs text-stone-500 mb-3">Get 10% off your first 12-pack and early access to limited flavors.</p>
+          <form class="flex gap-2" onsubmit="event.preventDefault()">
+            <input class="bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-700 text-xs px-3.5 py-2 rounded-xl flex-1 text-stone-800 dark:text-stone-200 focus:outline-none focus:border-amber-500" placeholder="Your email..." type="email"/>
+            <button class="px-4 py-2 bg-primary hover:bg-amber-600 text-white rounded-xl text-xs font-bold transition-all">Join</button>
+          </form>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 gap-4">
+        <div class="flex items-center gap-6">
+          <a class="hover:underline" href="#">Privacy Policy</a>
+          <a class="hover:underline" href="#">Terms of Service</a>
+          <a class="hover:underline" href="#">Accessibility</a>
+        </div>
+        <div>
+          <span>Glass bottle 100% infinitely recyclable. Please rinse and recycle.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </div><!-- end solid content wrapper -->
+
+  <!-- Animation engine -->
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
