@@ -1,3 +1,7 @@
+// Vercel Speed Insights
+import { injectSpeedInsights } from '@vercel/speed-insights';
+injectSpeedInsights();
+
 // Fullscreen Autoplay & Infinite Looping Animation Engine
 const TOTAL_FRAMES = 240;
 const FRAME_PATH_PREFIX = '/ezgif-7fbbfbe2b5f04963-jpg/ezgif-frame-';
